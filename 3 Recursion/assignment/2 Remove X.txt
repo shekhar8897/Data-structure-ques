@@ -1,0 +1,46 @@
+Remove X
+Send Feedback
+Given a string, compute recursively a new string where all 'x' chars have been removed.
+Sample Input 1 :
+xaxb
+Sample Output 1:
+ab
+Sample Input 2 :
+abc
+Sample Output 2:
+abc
+Sample Input 3 :
+xx
+Sample Output 3:
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+    char input[100];
+    cin.getline(input, 100);
+    removeX(input);
+    cout << input << endl;
+}
+// Change in the given string itself. So no need to return or print anything
+#include<string.h>
+void removeX(char input[]) {
+    // Write your code here
+    if(strlen(input)==0)
+    {
+        return;
+    }
+       removeX(input+1);
+       for(int i=0;i<strlen(input);i++)
+       {
+        if(input[i]=='x')
+        {
+            for(int k=i;k<strlen(input);k++)
+            {
+                input[k]=input[k+1];
+            }
+        }
+       }
+    
+}

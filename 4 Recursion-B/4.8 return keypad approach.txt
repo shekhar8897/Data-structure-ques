@@ -1,0 +1,103 @@
+Return Keypad Code
+Send Feedback
+Given an integer n, using phone keypad find out all the possible strings that can be made using digits of input n.
+Return empty string for numbers 0 and 1.
+Note : The order of strings are not important.
+Input Format :
+Integer n
+Output Format :
+All possible strings in different lines
+Constraints :
+1 <= n <= 10^6
+Sample Input:
+23
+Sample Output:
+ad
+ae
+af
+bd
+be
+bf
+cd
+ce
+cf
+
+
+#include <iostream>
+#include <string>
+#include "solution.h"
+using namespace std;
+
+int main(){
+    int num;
+    cin >> num;
+
+    string output[10000];
+    int count = keypad(num, output);
+    for(int i = 0; i < count && i < 10000; i++){
+        cout << output[i] << endl;
+    }
+    return 0;
+}
+#include <string>
+using namespace std;
+
+string key[]={" "," ","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+int keypad(int num,string output[])
+{
+    if(num==0)
+        return 0;
+    int p=num%10;
+    int outputsize=keypad(num/10,output);
+    string temp=key[p];
+    int length=temp.length();
+    //cout<<"temp is"<<temp<<endl;
+    if(outputsize==0)
+    {
+        for(int i=0;i<length;i++)
+        {
+            output[i]=temp[i];
+            //cout<<output[i]<<endl;
+        }
+        return length;
+    }
+    else
+    {
+        for(int i=0;i<(length-1)*outputsize;i++)
+        {
+            output[i+outputsize]=output[i];
+           // cout<<"new output" <<output[i]<<endl;
+        }
+    }
+  
+    int k=0,m=0,z=0;
+    
+    while(!output[z].empty())
+    {
+        z++;
+    }
+    
+    int q=z;
+    int a=q/length-1;
+    
+    for(int i=0;i<q;i++)
+    {
+        output[i]=output[i]+temp[k];
+        if(m<a)
+        {
+            m++;
+            continue;
+        }
+        m=0;
+        k++;
+    }
+    z=0;
+    while(!output[z].empty())
+    {
+        z++;
+    }
+    int r=z;
+    return r;
+     //return outputsize;
+}

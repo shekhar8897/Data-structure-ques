@@ -1,0 +1,94 @@
+Check AB
+Send Feedback
+Suppose you have a string made up of only 'a' and 'b'. Write a recursive function that checks if the string was generated using the following rules:
+a. The string begins with an 'a'
+b. Each 'a' is followed by nothing or an 'a' or "bb"
+c. Each "bb" is followed by nothing or an 'a'
+If all the rules are followed by the given string, return true otherwise return false.
+Sample Input:
+abb
+Sample Output:
+true
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+    char input[100];
+    bool ans;
+    cin >> input;
+    ans=checkAB(input);
+    if(ans)
+        cout<< "true" << endl;
+    else
+        cout<< "false" << endl;
+}
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int flag=0;
+int i=-1;
+bool helper(char input[],int len,int temp)
+{
+    
+    if(len==0)
+    {
+        flag=1;
+        return true;
+    }
+    
+    if(input[0]=='a')
+    {  
+        flag=1;
+        ++i;
+        
+        helper(input+1,len-1,temp);
+        
+    }
+    else if(input[0]=='b' && input[1]=='b' && i<temp)
+        {   
+            if(input[2]=='b')
+            {
+            
+            flag=0;
+            return false;
+            }
+            else
+            {
+                
+                flag=1;
+                i+=2;
+                
+                return helper(input+2,len-2,temp);
+            }
+            
+        }
+        else
+        {
+            flag=0;
+            return false;
+        }
+        if(flag==1)
+        {
+                return true;
+        }
+}
+bool checkAB(char input[]) {
+	// Write your code here
+   
+    int len=strlen(input);
+    int temp=len;
+    if(input[0]=='b')
+    {
+        return false;
+    }
+    bool p=helper(input,len,temp);
+    
+    return p;
+}
+
+
+
+

@@ -1,0 +1,28 @@
+Multiplication (Recursive)
+Send Feedback
+Given two integers m & n, calculate and return their multiplication using recursion. You can only use subtraction and addition for your calculation. No other operators are allowed.
+Input format : m and n (in different lines)
+
+Sample Input :
+3 
+5
+Sample Output -
+15
+
+Solution:-
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+    int m, n;
+    cin >> m >> n;
+    cout << multiplyNumbers(m, n) << endl;
+}
+int multiplyNumbers(int m, int n) {
+    // Write your code here
+    return m*n;
+}
+
+

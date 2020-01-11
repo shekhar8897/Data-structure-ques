@@ -1,0 +1,52 @@
+Replace pi (recursive)
+Send Feedback
+Given a string, compute recursively a new string where all appearances of "pi" have been replaced by "3.14".
+Sample Input 1 :
+xpix
+Sample Output :
+x3.14x
+Sample Input 2 :
+pipi
+Sample Output :
+3.143.14
+Sample Input 3 :
+pip
+Sample Output :
+3.14p
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+    char input[10000];
+    cin.getline(input, 10000);
+    replacePi(input);
+    cout << input << endl;
+}
+
+// Change in the given string itself. So no need to return or print anything
+#include<bits/stdc++.h>
+
+void replacePi(char input[]) {
+	
+    if(strlen(input)==0 || strlen(input)==1)
+        return;
+    replacePi(input+1);
+    for(int k=0;k<strlen(input);k++)
+    {
+        if(input[k]=='p' && input[k+1]=='i')
+        {
+            for(int i=strlen(input);i>k+1;i--)
+            {
+                input[i+2]=input[i];
+            }
+            input[k]='3';
+            input[k+1]='.';
+            input[k+2]='1';
+            input[k+3]='4';
+        }
+    }
+}
+
+

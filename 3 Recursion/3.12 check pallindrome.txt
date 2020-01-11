@@ -1,0 +1,67 @@
+Check Palindrome (recursive)
+Send Feedback
+Check if a given String S is palindrome or not (using recursion). Return true or false.
+Input Format :
+String S
+Output Format :
+true or false
+Sample Input 1 :
+racecar
+Sample Output 1:
+true
+Sample Input 2 :
+ninja
+Sample Output 2:
+false
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+    char input[50];
+    cin >> input;
+    
+    if(checkPalindrome(input)) {
+        cout << "true" << endl;
+    }
+    else {
+        cout << "false" << endl;
+    }
+}
+
+
+bool helper(char input[],int start,int end)
+{
+    if(start>=end)
+        return true;
+    if(input[start]!=input[end])
+        return false;
+    
+    helper(input,start+1,end-1);
+}
+
+bool checkPalindrome(char input[]) {
+    // Write your code here
+    int length=0;
+    while(input[length]!='\0')
+    {
+        length++;
+    }
+    if(length==1)
+    {
+        return true;
+    }
+    bool res=helper(input,0,length-1);
+    return res;
+}
+
+

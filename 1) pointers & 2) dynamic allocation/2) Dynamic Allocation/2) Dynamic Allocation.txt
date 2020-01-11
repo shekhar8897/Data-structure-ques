@@ -1,0 +1,260 @@
+
+3) Dynamic Allocation
+
+
+      #include <iostream>
+      using namespace std;
+
+      int main() {
+      	int * p = new int;
+      	*p = 10;
+      	cout << *p << endl;
+
+      	double *pd = new double;
+
+      	char* c = new char;
+
+      	int* pa = new int[50];
+      	int n;
+      	cout << "Enter num of elements" << endl;
+      	cin >> n;
+
+      	int* pa2 = new int[n];
+      	for (int i = 0; i < n; i++) {
+      		cin >> pa2[i];
+      	}
+
+      	int max = -1;
+      	for (int i = 0; i < n; i++) {
+      		if (max < a[i]) {
+      			max = a[i];
+      		}
+      	}
+      	cout << max << endl;
+      }
+
+
+  4) Dynamic Allocation 2
+
+      #include <iostream>
+    using namespace std;
+
+    int main() {
+
+    	int *p = new int;
+    	delete p;
+
+    	p = new int;
+    	delete p;
+
+    	p = new int[100];
+    	delete [] p;
+
+    	/*
+    	while (true) {
+    		int *p = new int;
+    	}
+
+    	while (true) {
+    		int i = 10;
+    	}
+    */
+
+    }
+
+
+5) Dynamic Allocation of 2D array
+
+#include <iostream>
+using namespace std;
+
+int main() {
+int m, n;
+cin >> m >> n;
+int** p = new int*[m];
+for (int i = 0; i < m; i++) {
+  p[i] = new int[i + 1];
+  for (int j = 0;j <n; j++) {
+    cin >> p[i][j];
+  }
+}
+
+for (int i = 0; i < m; i++) {
+  delete [] p[i];
+}
+delete [] p;
+}
+
+
+6) Macros and Global Variables
+
+
+#include <iostream>
+using namespace std;
+#define PI 3.14
+
+int main() {
+
+	int r;
+	cin >> r;
+
+	cout << PI * r * r << endl;
+
+}
+
+7) Global Variables
+
+
+#include <iostream>
+using namespace std;
+
+int a;
+
+void g() {
+	a++;
+	cout << a << endl;
+}
+
+void f() {
+	cout << a << endl;
+	a++;
+	g();
+}
+
+int main() {
+	a = 10;
+	f();
+	f();
+	cout << a << endl;
+}
+
+8) Default arguments
+
+#include <iostream>
+using namespace std;
+
+int sum(int a[], int size, int si = 0) {
+	int ans = 0;
+	for (int i = si; i < size; i++) {
+		ans += a[i];
+	}
+	return ans;
+}
+
+int sum2(int a, int b = 0, int c = 0, int d = 0) {
+	return a + b + c + d;
+}
+
+int main() {
+	 int a[20];
+	 // input code for a
+
+	 cout << sum(a, 20) << endl;
+}
+
+9) inline
+
+#include <iostream>
+using namespace std;
+
+inline int max(int a, int b) {
+	return (a > b)?  a : b;
+}
+
+int main() {
+	int a, b;
+	cin >> a >> b;
+
+	int c = max(a, b);
+
+	int x,y;
+	x = 12;
+	y = 34;
+
+	int z = max(x, y);
+}
+
+10)const_pointers
+
+
+ #include <iostream>
+using namespace std;
+
+void g(int const & a) {
+	a++;
+}
+
+void f(const int * p) {
+}
+
+int main() {
+	int const i = 10;
+
+	int const * p = &i;
+
+	int j = 12;
+	int* p3 = &j;
+	f(p3);
+	g(j);
+
+	int const * p2 = &j;
+	cout << *p2 << endl;
+	j++;
+	cout << *p2 << endl;
+
+
+}
+
+
+11) const_ref
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	// constant int
+	const int i = 10;
+	int const i2 = 10;
+
+	// constant reference from a non const int
+	int j = 12;
+	const int & k = j;
+	j++;
+
+	cout << k << endl;
+
+	// constant reference from a const int
+	int const j2 = 12;
+	int const &k2 = j2;
+
+	// reference from a const int
+	int const j3 = 123;
+	int & k3 = j3;
+	k3++;
+
+
+}
+
+
+12)  constant_pointers
+
+
+ #include <iostream>
+using namespace std;
+
+int main() {
+	int i = 10;
+	int j = 21;
+	int const * p = &i;
+
+	p = &j;
+
+	int * const p2 = &i;
+	(*p2)++;
+	//p2 = &j;
+
+
+	int const * const p3 = &i;
+	p3 = &j;
+	(*p3)++;
+}

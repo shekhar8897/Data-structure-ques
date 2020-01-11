@@ -1,0 +1,102 @@
+Merge Sort Code
+Send Feedback
+Sort an array A using Merge Sort.
+Change in the input array itself. So no need to return or print anything.
+Input format :
+Line 1 : Integer n i.e. Array size
+Line 2 : Array elements (separated by space)
+Output format :
+Array elements in increasing order (separated by space)
+Constraints :
+1 <= n <= 1000
+Sample Input:
+6 
+2 6 8 5 4 3
+Sample Output:
+2 3 4 5 6 8
+
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+  int input[1000],length;
+  cin >> length;
+  for(int i=0; i < length; i++)
+    cin >> input[i];
+  mergeSort(input, length);
+  for(int i = 0; i < length; i++) {
+    cout << input[i] << " ";
+  }
+}
+
+
+
+
+void merger(int input[],int start, int m, int last)
+{
+    int i,j,k;
+    int n1=m-start+1;
+    int n2=last-m;
+    
+    int L[n1],R[n2];
+    
+    for(i=0;i<n1;i++)
+    {
+        L[i]=input[start+i];
+    }
+    for(j=0;j<n2;j++)
+    {
+        R[j]=input[m+1+j];
+    }
+    i=0;j=0;k=start;
+    
+    while(i<n1 && j<n2)
+    {
+        if(L[i]<=R[j])
+        {
+            input[k]=L[i];
+            i++;
+        }
+        else
+        {
+            input[k]=R[j];
+            j++;
+        }
+        k++;
+    }
+    
+    while(i<n1)
+    {
+        input[k]=L[i];
+        i++;
+        k++;
+    }
+    while(j<n2)
+    {
+        input[k]=R[j];
+        j++;
+        k++;
+    }
+}
+
+void helper(int input[],int start,int last)
+{
+    if(start<last)
+    {
+        int m=(start+last)/2;
+        
+        helper(input,start,m);
+        helper(input,m+1,last);
+        
+        merger(input,start,m,last);
+    }
+}
+void mergeSort(int input[], int size){
+	// Write your code here
+    int start=0;
+    int last=size-1;
+    
+    helper(input,start,last);
+}
